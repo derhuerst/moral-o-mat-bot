@@ -20,6 +20,7 @@
 		"node": ">=6"
 	},
 	"dependencies": {
-		"moral-o-mat": "^0.1.0"
+		"moral-o-mat": "^0.1.0",
+		"node-telegram-bot-api": "^0.27.1"
 	}
 }
