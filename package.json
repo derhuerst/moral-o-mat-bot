@@ -1,0 +1,25 @@
+{
+	"private": true,
+	"name": "moral-o-mat-bot",
+	"description": "A Telegram bot that gives you a controversial moral statement to think about.",
+	"version": "0.1.0",
+	"main": "index.js",
+	"keywords": [
+		"game",
+		"moral",
+		"ethics",
+		"telegram",
+		"bot"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/moral-o-mat-bot",
+	"repository": "derhuerst/moral-o-mat-bot",
+	"bugs": "https://github.com/derhuerst/moral-o-mat-bot/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+		"moral-o-mat": "^0.1.0"
+	}
+}
