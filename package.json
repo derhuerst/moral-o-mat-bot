@@ -20,7 +20,10 @@
 		"node": ">=6"
 	},
 	"dependencies": {
+		"floordate": "^3.0.0",
+		"level": "^1.7.0",
 		"moral-o-mat": "^0.1.0",
+		"persistent-timeout": "^1.1.0",
 		"node-telegram-bot-api": "^0.27.1"
 	}
 }
