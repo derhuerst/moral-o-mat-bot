@@ -53,7 +53,7 @@ bot.on('message', (msg) => {
 			db.put(user, id, (err) => {
 				if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
 
-				bot.sendMessage(user, 'Okay, werde dir was schicken.')
+				bot.sendMessage(user, 'Okay, werde dir morgen um 8 was schicken.')
 			})
 		})
 	} else if (text === '/moral') {
