@@ -46,6 +46,7 @@ bot.on('message', (msg) => {
 			})
 		})
 	} else if (text === '/start') {
+		bot.sendMessage(user, 'Happy Birthday! 🎉')
 		const id = timeouts.timeout(tomorrow8am(), user, (err) => {
 			if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
 
@@ -55,5 +56,7 @@ bot.on('message', (msg) => {
 				bot.sendMessage(user, 'Okay, werde dir was schicken.')
 			})
 		})
+	} else if (text === '/moral') {
+		bot.sendMessage(user, moralOMat())
 	}
 })
