@@ -1,6 +1,6 @@
 # moral-o-mat-bot
 
-**A Telegram bot that gives you a controversial moral statement to think about.**
+**A Telegram bot that gives you a controversial moral statement to think about.** [@moralOMatBot](https://telegram.me/moralOMatBot)
 
 [![npm version](https://img.shields.io/npm/v/moral-o-mat-bot.svg)](https://www.npmjs.com/package/moral-o-mat-bot)
 [![build status](https://img.shields.io/travis/derhuerst/moral-o-mat-bot.svg)](https://travis-ci.org/derhuerst/moral-o-mat-bot)

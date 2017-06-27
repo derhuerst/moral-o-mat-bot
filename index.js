@@ -17,7 +17,6 @@ if (!TOKEN) {
 
 const hour = 60 * 60 * 1000
 const day = 24 * hour
-// const day = 10 * 1000
 
 const sendStatement = (user) => {
 	timeouts.timeout(day, user)
