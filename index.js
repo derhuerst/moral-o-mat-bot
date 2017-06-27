@@ -19,7 +19,7 @@ const hour = 60 * 60 * 1000
 const day = 24 * hour
 
 const sendStatement = (user) => {
-	timeouts.timeout(day, user)
+	timeouts.timeout(tomorrow8am(), user)
 	bot.sendMessage(user, 'Guten Morgen! ' + moralOMat())
 }
 
@@ -46,9 +46,7 @@ bot.on('message', (msg) => {
 			})
 		})
 	} else if (text === '/start') {
-		const scheduled = tomorrow8am() - Date.now()
-
-		const id = timeouts.timeout(scheduled, user, (err) => {
+		const id = timeouts.timeout(tomorrow8am(), user, (err) => {
 			if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
 
 			db.put(user, id, (err) => {
