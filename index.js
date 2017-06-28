@@ -32,6 +32,7 @@ const bot = new Bot(TOKEN, {polling: true})
 
 bot.on('message', (msg) => {
 	const user = msg.chat.id
+	if (!msg.text) return
 	const text = msg.text.trim()
 
 	if (text === '/stop') {
