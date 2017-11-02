@@ -31,33 +31,32 @@ const tomorrow8am = () => new Date(+floor(new Date(), 'day') + day + 8 * hour)
 const bot = new Bot(TOKEN, {polling: true})
 
 bot.on('message', (msg) => {
-	const user = msg.chat.id
 	if (!msg.text) return
+	const chat = msg.chat.id
 	const text = msg.text.trim()
 
 	if (text === '/stop') {
-		db.get(user, (err, id) => {
-			if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
-			if (!id) return bot.sendMessage(user, 'Oops! No timer found.')
+		db.get(chat, (err, id) => {
+			if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
+			if (!id) return bot.sendMessage(chat, 'Oops! No timer found.')
 
 			timeouts.removeTimeout(id, (err) => {
-				if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
+				if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
 
-				bot.sendMessage(user, 'Okay, Message angekommen…')
+				bot.sendMessage(chat, 'Okay, Message angekommen…')
 			})
 		})
 	} else if (text === '/start') {
-		bot.sendMessage(user, 'Happy Birthday! 🎉')
-		const id = timeouts.timeout(tomorrow8am(), user, (err) => {
-			if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
+		const id = timeouts.timeout(+tomorrow8am(), chat, (err) => {
+			if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
 
-			db.put(user, id, (err) => {
-				if (err) return bot.sendMessage(user, 'Oops! ' + err.message)
+			db.put(chat, id, (err) => {
+				if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
 
-				bot.sendMessage(user, 'Okay, werde dir morgen um 8 was schicken.')
+				bot.sendMessage(chat, 'Okay, werde dir morgen um 8 was schicken.')
 			})
 		})
 	} else if (text === '/moral') {
-		bot.sendMessage(user, moralOMat())
+		bot.sendMessage(chat, moralOMat())
 	}
 })
