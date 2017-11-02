@@ -2,7 +2,7 @@
 
 const path = require('path')
 const level = require('level')
-const setupTimeouts = require('persistent-timeout')
+const setupTimeouts = require('./lib/timeouts')
 const floor = require('floordate')
 const Bot = require('node-telegram-bot-api')
 const moralOMat = require('moral-o-mat')
@@ -19,7 +19,9 @@ const hour = 60 * 60 * 1000
 const day = 24 * hour
 
 const sendStatement = (user) => {
-	timeouts.timeout(tomorrow8am(), user)
+	timeouts.put(+tomorrow8am(), user, (err) => {
+		if (err) console.error(err)
+	})
 	bot.sendMessage(user, 'Guten Morgen! ' + moralOMat())
 }
 
@@ -36,25 +38,14 @@ bot.on('message', (msg) => {
 	const text = msg.text.trim()
 
 	if (text === '/stop') {
-		db.get(chat, (err, id) => {
-			if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
-			if (!id) return bot.sendMessage(chat, 'Oops! No timer found.')
-
-			timeouts.removeTimeout(id, (err) => {
-				if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
-
-				bot.sendMessage(chat, 'Okay, Message angekommen…')
-			})
+		timeouts.del(chat, (err) => {
+			if (err) bot.sendMessage(chat, 'Oops! ' + err.message)
+			else bot.sendMessage(chat, 'Okay, Message angekommen…')
 		})
 	} else if (text === '/start') {
-		const id = timeouts.timeout(+tomorrow8am(), chat, (err) => {
-			if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
-
-			db.put(chat, id, (err) => {
-				if (err) return bot.sendMessage(chat, 'Oops! ' + err.message)
-
-				bot.sendMessage(chat, 'Okay, werde dir morgen um 8 was schicken.')
-			})
+		timeouts.put(chat, +tomorrow8am(), (err) => {
+			if (err) bot.sendMessage(chat, 'Oops! ' + err.message)
+			else bot.sendMessage(chat, 'Okay, werde dir morgen um 8 was schicken.')
 		})
 	} else if (text === '/moral') {
 		bot.sendMessage(chat, moralOMat())
