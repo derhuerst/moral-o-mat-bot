@@ -21,9 +21,10 @@
 	},
 	"dependencies": {
 		"floordate": "^3.0.0",
-		"level": "^2.0.0",
-		"moral-o-mat": "^0.3.0",
-		"node-telegram-bot-api": "^0.27.1",
-		"persistent-timeout": "^1.1.0"
+		"js-string-escape": "^1.0.1",
+		"level": "^4.0.0",
+		"moral-o-mat": "^1.0.1",
+		"telegraf": "^3.21.2",
+		"through2": "^2.0.3"
 	}
 }
